@@ -1,0 +1,9 @@
+#[IDE]
+*.idea
+*.project
+.svn/*
+.settings/
+build/
+
+#[PROJECT]
+*.class
