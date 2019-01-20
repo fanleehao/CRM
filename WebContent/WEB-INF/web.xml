@@ -19,8 +19,7 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:applicationContext.xml</param-value>
-	</context-param>
-	
+	</context-param>	
 	
 	<!-- struts核心过滤器 -->
 	<filter>

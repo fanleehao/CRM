@@ -24,6 +24,8 @@
 		<property name="password" value="${jdbc.password}"/>
 	</bean>
 	
+	
+	
 	<!-- 配置SessionFactory -->
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<!-- 注入连接池 -->
@@ -45,6 +47,26 @@
 			</list>
 		</property>
 	</bean>
+	
+	<!-- 事务管理 -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<!-- 开启事务 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+	<!-- Bean实体 -->
+	<bean id="userAction" class="com.leehao.crm.web.action.UserAction" scope="prototype">
+		<property name="userService" ref="userService"/>
+	</bean>
+	<bean id="userService" class="com.leehao.crm.service.impl.UserServiceImpl">
+		<property name="userDao" ref="userDao"/>
+	</bean>
+	<bean id="userDao" class="com.leehao.crm.dao.impl.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	
 	
 	
 </beans>
