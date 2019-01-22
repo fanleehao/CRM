@@ -44,6 +44,8 @@
 		<property name="mappingResources">
 			<list>
 				<value>com/leehao/crm/domain/User.hbm.xml</value>
+				<value>com/leehao/crm/domain/Customer.hbm.xml</value>
+				<value>com/leehao/crm/domain/BaseDict.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -55,7 +57,7 @@
 	<!-- 开启事务 -->
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
-	<!-- Bean实体 -->
+	<!-- Bean实体...... User -->
 	<bean id="userAction" class="com.leehao.crm.web.action.UserAction" scope="prototype">
 		<property name="userService" ref="userService"/>
 	</bean>
@@ -66,7 +68,27 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
+	<!-- Bean实体 .......Customer -->
+	<bean id="customerAction" class="com.leehao.crm.web.action.CustomerAction" scope="prototype">
+		<property name="customerService" ref="customerService"></property>
+	</bean>
+	<bean id="customerService" class="com.leehao.crm.service.impl.CustomerServiceImpl">
+		<property name="customerDao" ref="customerDao"></property>
+	</bean>	
+	<bean id="customerDao" class="com.leehao.crm.dao.impl.CustomerDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 	
+	<!-- Bean实体......BaseDict -->
+	<bean id="baseDictAction" class="com.leehao.crm.web.action.BaseDictAction" scope="prototype">
+		<property name="baseDictService" ref="baseDictService"></property>
+	</bean>
+	<bean id="baseDictService" class="com.leehao.crm.service.impl.BaseDictServiceImpl">
+		<property name="baseDictDao" ref="baseDictDao"></property>
+	</bean>
+	<bean id="baseDictDao" class="com.leehao.crm.dao.impl.BaseDictDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 	
 	
 </beans>

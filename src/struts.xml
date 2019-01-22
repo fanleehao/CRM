@@ -14,5 +14,25 @@
 		<action name="user_*" class="userAction" method="{1}">			
 			<result name="success" type="redirect">/index.jsp</result>
 		</action>
+		
+		<action name="customer_*" class="customerAction" method="{1}">
+			<result name="saveUI">/jsp/customer/add.jsp</result>
+			<result name="findAll">/jsp/customer/list.jsp</result>
+			<result name="saveSuccess" type="redirectAction">customer_findAll.action</result>
+			<result name="deleteSuccess" type="redirectAction">customer_findAll.action</result>
+			<result name="editSuccess">/jsp/customer/edit.jsp</result>
+			<result name="updateSuccess"  type="redirectAction">customer_findAll.action</result>
+			<!-- input错误 转向-->
+			<result name="input">/jsp/customer/add.jsp</result>
+			
+			
+			<interceptor-ref name="defaultStack">
+				<param name="fileUpload.maximumSize">2*1024*1024</param>
+				<param name="fileUpload.allowedExtensions">.jpg</param>
+			</interceptor-ref>
+		</action>
+		
+		<action name="baseDict_*" class="baseDictAction" method="{1}">			
+		</action>
 	</package>
 </struts>

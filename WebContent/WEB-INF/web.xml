@@ -20,6 +20,15 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:applicationContext.xml</param-value>
 	</context-param>	
+	<!-- spring接管Session，解决了service中事务session的关闭带来的延迟加载问题 -->
+	<filter>
+  		<filter-name>OpenSessionInViewFilter</filter-name>
+  		<filter-class>org.springframework.orm.hibernate5.support.OpenSessionInViewFilter</filter-class>
+  	</filter> 
+   	<filter-mapping>
+  		<filter-name>OpenSessionInViewFilter</filter-name>
+  		<url-pattern>*.action</url-pattern>
+  	</filter-mapping>
 	
 	<!-- struts核心过滤器 -->
 	<filter>
