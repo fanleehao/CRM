@@ -22,5 +22,10 @@
 		<many-to-one name="cust_source" class="com.leehao.crm.domain.BaseDict" column="cust_source" />
 		<many-to-one name="cust_industry" class="com.leehao.crm.domain.BaseDict" column="cust_industry" />
 		<many-to-one name="cust_level" class="com.leehao.crm.domain.BaseDict" column="cust_level" />
+		
+		<set name="linkMans" cascade="delete" inverse="true">
+			<key column="lkm_cust_id"></key>
+			<one-to-many class="com.leehao.crm.domain.LinkMan" />
+		</set>
 	</class>
 </hibernate-mapping>

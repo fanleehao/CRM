@@ -165,7 +165,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	public String edit() {
 		//查询客户
 		customer = customerService.findById(customer.getCust_id());
-		//修改客户数据的信息，将信息回传至页面
+		//修改客户数据的信息，将信息回传至页面___-页面可以直接从model里获得
 		//ActionContext.getContext().getValueStack().push(customer);
 		return "editSuccess";
 	}

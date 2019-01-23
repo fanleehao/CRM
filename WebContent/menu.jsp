@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
 <HTML xmlns="http://www.w3.org/1999/xhtml">
 <HEAD id=Head1>
@@ -155,11 +156,11 @@ A.active {
 											cellPadding=2 width=155 align=center border=0>
 											<TBODY>
 												<TR>
-													<TD class=menuSmall><A class=style2 href="linkmanServlet?method=add"
+													<TD class=menuSmall><A class=style2 href="${pageContext.request.contextPath }/linkMan_saveUI.action"
 														target=main>－ 新增联系人</A></TD>
 												</TR>
 												<TR>
-													<TD class=menuSmall><A class=style2 href="linkmanServlet?method=list"
+													<TD class=menuSmall><A class=style2 href="${pageContext.request.contextPath }/linkMan_findAll.action"
 														target=main>－联系人列表</A></TD>
 												</TR>
 												

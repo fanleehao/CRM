@@ -14,13 +14,9 @@ import com.leehao.crm.domain.Customer;
  * @date 创建时间：2019年1月20日 下午3:21:05
  * @desc
  **/
-public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao {
+public class CustomerDaoImpl extends BaseDaoImpl<Customer> implements CustomerDao {
 
-	@Override
-	public void save(Customer customer) {
-		this.getHibernateTemplate().save(customer);
-	}
-
+	
 	@Override
 	public Integer findCount(DetachedCriteria detachedCriteria) {
 		// select count(*) from xxx where 条件;
@@ -40,19 +36,17 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao 
 		return (List<Customer>) this.getHibernateTemplate().findByCriteria(detachedCriteria, begin, pageSize);
 	}
 
-	@Override
-	public void delete(Customer customer) {
-		this.getHibernateTemplate().delete(customer);
-	}
+	
 
 	@Override
 	public Customer findById(Long cust_id) {
 		return this.getHibernateTemplate().get(Customer.class, cust_id);
 	}
+	
 
 	@Override
-	public void update(Customer customer) {
-		this.getHibernateTemplate().update(customer);
+	public List<Customer> findAll() {
+		return (List<Customer>) this.getHibernateTemplate().find("from Customer");
 	}
 
 }

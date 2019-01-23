@@ -12,13 +12,13 @@ import com.leehao.crm.domain.User;
  * @date 创建时间：2019年1月19日 下午3:33:52 
  * @desc 
  **/
-public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
+public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 
-	@Override
-	public void save(User user) {
-		this.getHibernateTemplate().save(user);
-		System.out.println("Dao regist....");
-	}
+//	@Override
+//	public void save(User user) {
+//		this.getHibernateTemplate().save(user);
+//		System.out.println("Dao regist....");
+//	}
 
 	@Override
 	public User login(User user) {

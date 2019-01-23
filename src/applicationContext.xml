@@ -46,6 +46,7 @@
 				<value>com/leehao/crm/domain/User.hbm.xml</value>
 				<value>com/leehao/crm/domain/Customer.hbm.xml</value>
 				<value>com/leehao/crm/domain/BaseDict.hbm.xml</value>
+				<value>com/leehao/crm/domain/LinkMan.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -90,5 +91,16 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	
+	<!-- Bean实体......LinkMan -->
+	<bean id="linkManAction" class="com.leehao.crm.web.action.LinkManAction" scope="prototype">
+		<property name="linkManService" ref="linkManService"></property>
+		<property name="customerService" ref="customerService"></property>
+	</bean>
+	<bean id="linkManService" class="com.leehao.crm.service.impl.LinkManServiceImpl">
+		<property name="linkManDao" ref="linkManDao"></property>
+	</bean>
+	<bean id="linkManDao" class="com.leehao.crm.dao.impl.LinkManDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 	
 </beans>

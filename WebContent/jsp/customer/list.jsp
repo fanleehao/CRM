@@ -91,7 +91,7 @@
 	<FORM id="customerForm" name="customerForm"
 		action="${pageContext.request.contextPath }/customer_findAll.action"
 		method=post>
-
+		<s:debug />
 		<TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
 			<TBODY>
 				<TR>

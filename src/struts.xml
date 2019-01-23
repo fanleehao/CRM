@@ -34,5 +34,14 @@
 		
 		<action name="baseDict_*" class="baseDictAction" method="{1}">			
 		</action>
+		
+		<action name="linkMan_*" class="linkManAction" method="{1}">
+			<result name="findAll">/jsp/linkman/list.jsp</result>
+			<result name="saveUI">/jsp/linkman/add.jsp</result>
+			<result name="saveSuccess" type="redirectAction">linkMan_findAll.action</result>
+			<result name="editSuccess">/jsp/linkman/edit.jsp</result>
+			<result name="updateSuccess" type="redirectAction">linkMan_findAll.action</result>
+			<result name="deleteSuccess" type="redirectAction">linkMan_findAll.action</result>
+		</action>
 	</package>
 </struts>

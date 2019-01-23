@@ -1,4 +1,8 @@
 package com.leehao.crm.domain;
+
+import java.util.HashSet;
+import java.util.Set;
+
 /** 
  * @author fanleehao
  * @date 创建时间：2019年1月20日 下午3:07:23 
@@ -23,6 +27,9 @@ public class Customer {
 	private String cust_phone;
 	private String cust_mobile;
 	private String cust_image;
+	//联系人集合
+	private Set<LinkMan> linkMans = new HashSet<>();
+	
 	public String getCust_image() {
 		return cust_image;
 	}
@@ -76,6 +83,13 @@ public class Customer {
 	}
 	public void setCust_mobile(String cust_mobile) {
 		this.cust_mobile = cust_mobile;
+	}	
+		
+	public Set<LinkMan> getLinkMans() {
+		return linkMans;
+	}
+	public void setLinkMans(Set<LinkMan> linkMans) {
+		this.linkMans = linkMans;
 	}
 	@Override
 	public String toString() {
