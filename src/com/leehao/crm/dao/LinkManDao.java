@@ -15,13 +15,13 @@ import sun.awt.image.ImageWatched.Link;
  **/
 public interface LinkManDao extends BaseDao<LinkMan> {
 
-	Integer findByCount(DetachedCriteria detachedCriteria);
+//	Integer findByCount(DetachedCriteria detachedCriteria);
 
-	List<LinkMan> findByPage(DetachedCriteria detachedCriteria, Integer begin, Integer pageSize);
+//	List<LinkMan> findByPage(DetachedCriteria detachedCriteria, Integer begin, Integer pageSize);
 
 //	void save(LinkMan linkMan);
 
-	LinkMan findById(Long lkm_id);
+//	LinkMan findById(Long lkm_id);
 
 //	void update(LinkMan linkMan);
 

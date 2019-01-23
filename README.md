@@ -130,6 +130,43 @@ A CRM Project (ON Web) from Self-learning.
 
 
 
+#### 通用Dao
+
+- 处理Dao的增删改查操作，使用泛型的方式抽取到一个基本的BaseDao接口中，在其实现类中实现，并继承一个HibernateDaoSupport父类；而使用是模块的Dao直接继承BaseDao，保留一些模块单独的方法；而模块的实现类则另外继承BaseDaoImpl的类。**纵向的接口和实现类的保留依然是方便模型的AOP拓展**
+
+- 两种方法：使用泛型在继承中难以直接获得泛型实例的class对象，对Dao的持久层操作有影响，解决如下：
+
+  - 使用一个构造函数，在不同的模块实现类中，调用父类BaseDaoImpl的构造，传入当前实例的Class对象
+  - 使用泛型的反射机制
+
+- 泛型的反射机制获取：将DAO中的构造方法去掉，将父类的通用的DAO中提供无参数的构造即可，但是需要在无参数的构造中需要获得具体类型的Class才可以-----涉及到泛型的反射了
+
+  - 需要做的时候在父类的构造方法中获得子类继承父类上的参数化类型中的实际类型参数
+
+  - **第一步：获得代表子类对象的Class**
+
+  - **第二步：查看API**
+
+    -  Type[] getGenericInterfaces();         :获得带有泛型的接口，可以实现多个接口。
+
+    - Type getGenericSuperclass();           :获得带有泛型的父类，继承一个类。
+
+  -  **第三步：获得带有泛型的父类**
+
+  -  **第四步：将带有泛型的父类的类型转成具体参数化的类型**
+  -  **第五步：通过参数化类型的方法获得实际类型参数**
+
+  ```java
+  private Class clazz;
+  
+  public BaseDaoImpl() {
+      Class<? extends BaseDaoImpl> class1 = this.getClass();
+      Type type = class1.getGenericSuperclass();
+      ParameterizedType pType = (ParameterizedType) type;
+      Type[] types = pType.getActualTypeArguments();
+      this.clazz = (Class) types[0];
+  }
+  ```
 
 
 

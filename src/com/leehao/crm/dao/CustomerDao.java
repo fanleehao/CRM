@@ -13,16 +13,16 @@ import com.leehao.crm.domain.Customer;
  **/
 public interface CustomerDao extends BaseDao<Customer> {	
 
-	Integer findCount(DetachedCriteria detachedCriteria);
+//	Integer findCount(DetachedCriteria detachedCriteria);
 
-	List<Customer> findByPage(DetachedCriteria detachedCriteria, Integer begin, Integer pageSize);
+//	List<Customer> findByPage(DetachedCriteria detachedCriteria, Integer begin, Integer pageSize);
 
 //	void delete(Customer customer);
 
-	Customer findById(Long cust_id);
+//	Customer findById(Long cust_id);
 
 //	void update(Customer customer);
 
-	List<Customer> findAll();
+//	List<Customer> findAll();
 
 }
