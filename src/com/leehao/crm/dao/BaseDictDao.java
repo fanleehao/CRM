@@ -9,7 +9,7 @@ import com.leehao.crm.domain.BaseDict;
  * @date 创建时间：2019年1月20日 下午5:03:20 
  * @desc 
  **/
-public interface BaseDictDao {
+public interface BaseDictDao extends BaseDao<BaseDict>{
 
 	List<BaseDict> findByTypeCode(String dict_type_code);
 

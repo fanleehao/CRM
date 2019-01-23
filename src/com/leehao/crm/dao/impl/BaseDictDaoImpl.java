@@ -12,7 +12,12 @@ import com.leehao.crm.domain.BaseDict;
  * @date 创建时间：2019年1月20日 下午5:03:43 
  * @desc 
  **/
-public class BaseDictDaoImpl extends HibernateDaoSupport implements BaseDictDao {
+public class BaseDictDaoImpl extends BaseDaoImpl<BaseDict> implements BaseDictDao {
+
+	public BaseDictDaoImpl() {
+		super(BaseDict.class);
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public List<BaseDict> findByTypeCode(String dict_type_code) {

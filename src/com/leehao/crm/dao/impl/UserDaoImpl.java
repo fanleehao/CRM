@@ -20,6 +20,10 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 //		System.out.println("Dao regist....");
 //	}
 
+	public UserDaoImpl() {
+		super(User.class);
+	}
+
 	@Override
 	public User login(User user) {
 		// 查询
