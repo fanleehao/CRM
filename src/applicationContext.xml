@@ -47,10 +47,13 @@
 				<value>com/leehao/crm/domain/Customer.hbm.xml</value>
 				<value>com/leehao/crm/domain/BaseDict.hbm.xml</value>
 				<value>com/leehao/crm/domain/LinkMan.hbm.xml</value>
+				<value>com/leehao/crm/domain/SaleVisit.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
 	
+	<!-- 自启动注解 -->
+	<context:annotation-config />
 	<!-- 事务管理 -->
 	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"></property>
@@ -103,4 +106,12 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	
+	<!-- 实体Bean.....SaleVisit -->
+	<bean id="saleVisitAction" class="com.leehao.crm.web.action.SaleVisitAction" scope="prototype">
+	</bean>
+	<bean id="saleVisitService" class="com.leehao.crm.service.impl.SaleVisitServiceImpl">
+	</bean>
+	<bean id="saleVisitDao" class="com.leehao.crm.dao.impl.SaleVisitDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 </beans>

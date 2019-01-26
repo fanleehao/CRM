@@ -7,12 +7,21 @@
 	<constant name="struts.action.extension" value="action"/>
 	
 	<package name="crm" extends="struts-default" namespace="/">
+		<interceptors>
+			<interceptor name="privilegeInterceptor" class="com.leehao.crm.web.interceptor.PrivilegeInterceptor" />
+		</interceptors>
+	
 		<global-results>
 			<result name="login">/login.jsp</result>
 		</global-results>
 	
 		<action name="user_*" class="userAction" method="{1}">			
 			<result name="success" type="redirect">/index.jsp</result>
+			
+			<interceptor-ref name="privilegeInterceptor">
+				<param name="excludeMethods">regist, login</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
 		</action>
 		
 		<action name="customer_*" class="customerAction" method="{1}">
@@ -25,14 +34,20 @@
 			<!-- input错误 转向-->
 			<result name="input">/jsp/customer/add.jsp</result>
 			
+			<interceptor-ref name="privilegeInterceptor">
+				<param name="excludeMethods">regist, login</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
 			
 			<interceptor-ref name="defaultStack">
 				<param name="fileUpload.maximumSize">2*1024*1024</param>
 				<param name="fileUpload.allowedExtensions">.jpg</param>
-			</interceptor-ref>
+			</interceptor-ref>			
 		</action>
 		
-		<action name="baseDict_*" class="baseDictAction" method="{1}">			
+		<action name="baseDict_*" class="baseDictAction" method="{1}">	
+			<interceptor-ref name="privilegeInterceptor" />
+			<interceptor-ref name="defaultStack" />		
 		</action>
 		
 		<action name="linkMan_*" class="linkManAction" method="{1}">
@@ -42,6 +57,18 @@
 			<result name="editSuccess">/jsp/linkman/edit.jsp</result>
 			<result name="updateSuccess" type="redirectAction">linkMan_findAll.action</result>
 			<result name="deleteSuccess" type="redirectAction">linkMan_findAll.action</result>
+			
+			<interceptor-ref name="privilegeInterceptor" />
+			<interceptor-ref name="defaultStack" />
+		</action>
+		
+		<action name="saleVisit_*" class="saleVisitAction" method="{1}">
+			<result name="findAll">/jsp/salevisit/list.jsp</result>
+			<result name="saveUI">/jsp/salevisit/add.jsp</result>
+			<result name="saveSuccess" type="redirectAction">saleVisit_findAll.action</result>
+			
+			<interceptor-ref name="privilegeInterceptor" />
+			<interceptor-ref name="defaultStack" />
 		</action>
 	</package>
 </struts>

@@ -2,8 +2,12 @@ package com.leehao.crm.web.action;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.Servlet;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.struts2.ServletActionContext;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 
@@ -14,6 +18,9 @@ import com.leehao.crm.utils.UploadUtils;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JsonConfig;
 
 /** 
  * @author fanleehao
@@ -64,11 +71,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 	public void setUploadContentType(String uploadContentType) {
 		this.uploadContentType = uploadContentType;
 	}
-	
-	
-	
-	
-	
+		
 	/**
 	 * SaveUI
 	 */
@@ -138,6 +141,22 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		ActionContext.getContext().getValueStack().push(pageBean);
 		return "findAll";
 	}
+	/**
+	 * 查询所有客户，不分页
+	 * @throws IOException 
+	 */
+	public String findAllCustomer() throws IOException {
+		List<Customer> list =  customerService.findAll();
+		JsonConfig config = new JsonConfig();
+		//转为Json
+		config.setExcludes(new String[]{"linkMans","cust_source","cust_industry","cust_level"});
+		JSONArray jsonArray = JSONArray.fromObject(list, config);
+		
+		ServletActionContext.getResponse().setContentType("text/html;charset=UTF-8");
+		ServletActionContext.getResponse().getWriter().println(jsonArray.toString());
+		return NONE;
+	}
+	
 	
 	/**
 	 * 删除客户

@@ -1,5 +1,10 @@
 package com.leehao.crm.web.action;
 
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.Servlet;
+
 import org.apache.struts2.ServletActionContext;
 
 import com.leehao.crm.domain.User;
@@ -7,6 +12,9 @@ import com.leehao.crm.service.UserService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JsonConfig;
 
 /** 
  * @author fanleehao
@@ -55,6 +63,19 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 		}
 	}
 	
+	/**
+	 * 查找
+	 * @throws IOException 
+	 */
+	public String findAllUser() throws IOException {
+		List<User> list = userService.findAll();
+		//JsonConfig config = new JsonConfig();
+		//config.setExcludes(new String[]{""});
+		JSONArray jsonArray = JSONArray.fromObject(list);
+		ServletActionContext.getResponse().setContentType("text/html;charset=UTF-8");
+		ServletActionContext.getResponse().getWriter().println(jsonArray.toString());
+		return NONE;
+	}
 }
 
 
